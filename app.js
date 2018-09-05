@@ -49,14 +49,6 @@ fs.writeFileSync('public/noOfMatchesWon.json',noOfMatchesWon);
 var deliveries = require('/home/dev/sameer/ipl-sameer/json/deliveries.json');
 var minMatchId=577;
 var maxMatchId=636;
-/*
-for(i=0;i<matches.length;i++){
-    if(matches[i].season==2016)
-    if(minMatchId==0){
-        minMatchId=matches[i].id;
-    }
-    maxMatchId=matches[i].id;
-}*/
 var teamsConcededExtraRuns={};
 deliveries.forEach(n=>{
     if(parseInt(n.match_id)>=minMatchId&&parseInt(n.match_id)<=maxMatchId){
@@ -68,6 +60,58 @@ deliveries.forEach(n=>{
        }
     }
 })
-console.log(teamsConcededExtraRuns)
+//console.log(teamsConcededExtraRuns)
 var problem3json=JSON.stringify(teamsConcededExtraRuns);
 fs.writeFileSync('public/problem3.json',problem3json);
+
+//forth problem
+var bowlers={};
+deliveries.forEach(n=>{
+    if(parseInt(n.match_id)>=518&&parseInt(n.match_id)<=576){
+        if( bowlers.hasOwnProperty(n["bowler"])){
+           bowlers[n.bowler].runs+=parseInt(n.total_runs)
+           bowlers[n.bowler].ball++;
+
+                  }
+        else{
+            bowlers[n.bowler]={"ball":1,"runs":parseInt(n.total_runs)}
+            
+        }
+    }
+});
+//console.log(bowlers);
+
+for(key in bowlers){
+var economyRate;
+
+over=bowlers[key].ball/6;
+economyRate=bowlers[key].runs/over;
+bowlers[key]=parseInt((economyRate).toFixed(2));
+//console.log(bowlers[key].runs) 
+
+}
+//console.log(bowlers);
+
+var sortedEconomyList = [];
+for (var element in bowlers) {
+    sortedEconomyList.push([element, bowlers[element]]);
+}
+
+sortedEconomyList.sort(function(a, b) {
+    return a[1] - b[1];
+});
+
+//
+
+sortedEconomyList=sortedEconomyList.slice(1,10)
+//console.log(sortedEconomyList)
+var obj={};
+sortedEconomyList.forEach(n=>{
+    obj[n[0]]=n[1];
+})
+console.log(obj)
+
+ var problem4=JSON.stringify(obj);
+ fs.writeFileSync('public/problem4.json',problem4);
+
+//console.log(sortedEconomyList);
