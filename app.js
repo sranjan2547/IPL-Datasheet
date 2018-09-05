@@ -48,7 +48,7 @@ fs.writeFileSync('public/noOfMatchesWon.json',noOfMatchesWon);
 //third problem
 var deliveries = require('/home/dev/sameer/ipl-sameer/json/deliveries.json');
 var minMatchId=577;
-var maxMatchId=676;
+var maxMatchId=636;
 /*
 for(i=0;i<matches.length;i++){
     if(matches[i].season==2016)
@@ -60,12 +60,14 @@ for(i=0;i<matches.length;i++){
 var teamsConcededExtraRuns={};
 deliveries.forEach(n=>{
     if(parseInt(n.match_id)>=minMatchId&&parseInt(n.match_id)<=maxMatchId){
-       if(teamsConcededExtraRuns.hasOwnProperty(n["batting_team"])){
-           teamsConcededExtraRuns[n["batting_team"]]+=parseInt(n["extra_runs"]);
+       if(teamsConcededExtraRuns.hasOwnProperty(n["bowling_team"])){
+           teamsConcededExtraRuns[n["bowling_team"]]+=parseInt(n["extra_runs"]);
        }
        else{
-        teamsConcededExtraRuns[n["batting_team"]]=parseInt(n["extra_runs"])
+        teamsConcededExtraRuns[n["bowling_team"]]=parseInt(n["extra_runs"])
        }
     }
 })
 console.log(teamsConcededExtraRuns)
+var problem3json=JSON.stringify(teamsConcededExtraRuns);
+fs.writeFileSync('public/problem3.json',problem3json);
