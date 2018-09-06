@@ -1,5 +1,7 @@
+var appMethods=require('/home/dev/sameer/ipl-sameer/appMethods.js');
 const fs=require('fs');
 var matches = require('/home/dev/sameer/ipl-sameer/json/matches.json');
+/*
 var noOfMatchesPerYear={};
 matches.forEach(n => {
     if(noOfMatchesPerYear.hasOwnProperty(n.season)){
@@ -7,11 +9,11 @@ matches.forEach(n => {
     else{
         noOfMatchesPerYear[n.season]=1;
     }
-});
-// console.log(noOfMatchesPerYear);
+}); */
+
+ var noOfMatchesPerYear=appMethods.noOfMatchesPerYear(matches);
 
 var resultJson=JSON.stringify(noOfMatchesPerYear);
-//var fs = require('fs');
 fs.writeFileSync('public/result.json',resultJson);
 
 // second problem
@@ -109,7 +111,7 @@ var obj={};
 sortedEconomyList.forEach(n=>{
     obj[n[0]]=n[1];
 })
-console.log(obj)
+//console.log(obj)
 
  var problem4=JSON.stringify(obj);
  fs.writeFileSync('public/problem4.json',problem4);
