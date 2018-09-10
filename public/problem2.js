@@ -3,18 +3,21 @@ var year=[];
 var teams={};
 var dataArray=[];
 $.get('noOfMatchesWon.json',function(data){
+ console.log(data)
   obj=Object.entries(data);
-  for(var i=0;i<obj.length;i++){
-    year[i]=obj[i][1]["season"];
-  }
-//console.log(year);
+   for(var i=0;i<obj.length;i++){
+     year[i]=obj[i][0];
+   }
+ // year=Object.keys(obj)
+//console.log(year)
+console.log(obj);
 for(var i=0;i<obj.length;i++){
  for (index in obj[i][1]){
  if(index!=""&&index!="season")
    teams[index]=0;
  } 
 }
-console.log(teams);
+//console.log(teams);
 
 for(var key in teams){
   var arr=[];
@@ -35,7 +38,7 @@ for(var key in teams){
 }
 
 
-console.log(dataArray);
+//console.log(dataArray);
 //
 //console.log(teams);
 

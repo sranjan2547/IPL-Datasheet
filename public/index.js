@@ -2,7 +2,7 @@ var obj=[];
 $.get('result.json',function(data){
   obj=Object.entries(data);
 
-console.log(obj);
+//console.log(obj);
 
 
  Highcharts.chart('container', {
