@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const app = require('../appMethods');
 
-// testcases for noOfMatchesPerYear
+
 
 describe('count number of matches per season', function () {
 
@@ -71,7 +71,7 @@ describe('count number of matches per season', function () {
 });
 
 
-//testcases for matcheswon of all teams
+
 
 describe('count matches win per season per team', function () {
   var input1 = [{
@@ -264,7 +264,7 @@ describe('Top Economical Bowlers of 2015', function () {
   };
 
 
-  it('It should return extra runs consided per team', function () {
+  it('It should return top economical bowlers of 2015', function () {
     assert.deepEqual(app.topEconomicalBowlers(input1, input2), op1);
   });
 
@@ -305,7 +305,7 @@ describe('Top Economical Bowlers of 2015', function () {
   var op2 = { player1: 3, player2: 6 };
 
 
-  it('It should return extra runs consided per team', function () {
+  it('It should return top economical bowlers of 2015', function () {
     assert.deepEqual(app.topEconomicalBowlers(input3, input4), op2);
   });
 })

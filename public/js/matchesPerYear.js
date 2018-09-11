@@ -2,17 +2,11 @@ var obj=[];
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
     obj=obj[0][1];
-    // var arr=[]
-    // for(key in obj){
-    //     arr.push([key,obj[key]])
-    // }
+    
    stats= Object.keys(obj).reduce(function(stats,year){
       stats.push([year,obj[year]])
       return stats;
     },[])
-
-//  console.log(arr)
-  
 
 
 Highcharts.chart('container1', {

@@ -1,7 +1,7 @@
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
    obj=obj[1][1];
- //  console.log(obj)
+
    
     years=Object.keys(obj).reduce(function(years,year){
      years.push(year);
@@ -17,7 +17,7 @@ $.get('js/iplStats.json',function(data){
     
      return teamStats;
     },{})
-   // console.log(teamStats)
+
    finalResult= Object.keys(teamStats).reduce(function(finalResult,team){
       Object.keys(obj).reduce(function(noOfmatchesPerYear,year){
         var flag=false;
@@ -25,7 +25,7 @@ $.get('js/iplStats.json',function(data){
         if(team==teamInYear){
           teamStats[team].push(obj[year][teamInYear])
           flag=true;
-        //  console.log(teamInYear)
+
         }
         
       },{})
@@ -35,7 +35,7 @@ $.get('js/iplStats.json',function(data){
        },{})
        return finalResult;
     },{})
-//console.log(teamStats);
+
 finalStats= Object.keys(teamStats).reduce(function(finalStats,team){
 var teamStat={};
 teamStat.name=team;

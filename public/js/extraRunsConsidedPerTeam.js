@@ -1,4 +1,4 @@
-//var obj=[];
+
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
     obj=obj[2][1];
@@ -8,7 +8,7 @@ $.get('js/iplStats.json',function(data){
       return stats;
     },[])
 
-//  console.log(arr)
+
   
 
 
