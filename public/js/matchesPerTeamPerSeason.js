@@ -45,7 +45,7 @@ finalStats.push(teamStat);
 },[])
 console.log(finalStats)
 
-Highcharts.chart('container2', {
+Highcharts.chart('matches-per-team-per-season', {
     chart: {
       type: 'bar'
     },

@@ -9,7 +9,7 @@ $.get('js/iplStats.json',function(data){
     },[])
   
 
-Highcharts.chart('container4', {
+Highcharts.chart('top-economical-bowlers', {
     chart: {
       type: 'column'
     },

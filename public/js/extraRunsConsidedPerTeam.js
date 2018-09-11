@@ -8,11 +8,7 @@ $.get('js/iplStats.json',function(data){
       return stats;
     },[])
 
-
-  
-
-
-Highcharts.chart('container3', {
+Highcharts.chart('extra-runs-consided-per-team', {
     chart: {
       type: 'column'
     },

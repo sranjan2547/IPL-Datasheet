@@ -9,7 +9,7 @@ $.get('js/iplStats.json',function(data){
     },[])
 
 
-Highcharts.chart('container1', {
+Highcharts.chart('matches-per-year', {
     chart: {
       type: 'column'
     },
