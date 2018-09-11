@@ -1,7 +1,7 @@
 var obj=[];
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
-    obj=obj[0][1];
+    obj=obj[3][1];
     // var arr=[]
     // for(key in obj){
     //     arr.push([key,obj[key]])
@@ -15,12 +15,12 @@ $.get('js/iplStats.json',function(data){
   
 
 
-Highcharts.chart('container1', {
+Highcharts.chart('container4', {
     chart: {
       type: 'column'
     },
     title: {
-      text: 'Total Matches Per Year'
+      text: 'Top Economical Bowlers Of 2015'
     },
     subtitle: {
       text: ''
@@ -38,14 +38,14 @@ Highcharts.chart('container1', {
     yAxis: {
       min: 0,
       title: {
-        text: 'Number Of Matches'
+        text: 'Economy'
       }
     },
     legend: {
       enabled: false
     },
     tooltip: {
-      pointFormat: 'Matches: <b>{point.y:.0f} </b>'
+      pointFormat: 'Economy Rate: <b>{point.y:.0f} </b>'
     },
     series: [{
       name: 'Population',
@@ -55,7 +55,7 @@ Highcharts.chart('container1', {
         rotation: -90,
         color: '#FFFFFF',
         align: 'right',
-        format: '{point.y:.0f}', // one decimal
+        format: '{point.y:.1f}', // one decimal
         y: 10, // 10 pixels down from the top
         style: {
           fontSize: '13px',

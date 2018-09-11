@@ -1,11 +1,8 @@
-var obj=[];
+//var obj=[];
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
-    obj=obj[0][1];
-    // var arr=[]
-    // for(key in obj){
-    //     arr.push([key,obj[key]])
-    // }
+    obj=obj[2][1];
+    
    stats= Object.keys(obj).reduce(function(stats,year){
       stats.push([year,obj[year]])
       return stats;
@@ -15,12 +12,12 @@ $.get('js/iplStats.json',function(data){
   
 
 
-Highcharts.chart('container1', {
+Highcharts.chart('container3', {
     chart: {
       type: 'column'
     },
     title: {
-      text: 'Total Matches Per Year'
+      text: 'Extra runs consided in year 2016'
     },
     subtitle: {
       text: ''
@@ -38,14 +35,14 @@ Highcharts.chart('container1', {
     yAxis: {
       min: 0,
       title: {
-        text: 'Number Of Matches'
+        text: 'Extra runs'
       }
     },
     legend: {
       enabled: false
     },
     tooltip: {
-      pointFormat: 'Matches: <b>{point.y:.0f} </b>'
+      pointFormat: 'Extra runs: <b>{point.y:.0f} </b>'
     },
     series: [{
       name: 'Population',

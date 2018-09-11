@@ -1,17 +1,56 @@
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
    obj=obj[1][1];
-   var years=[];
-    for(year in obj){
-        years.push(year)
-    }
-    console.log(obj)
+ //  console.log(obj)
+   
+    years=Object.keys(obj).reduce(function(years,year){
+     years.push(year);
+      return years;
+    },[])
+    var teams
+    teamStats=Object.keys(obj).reduce(function(teamStats,yearStat){
+      var stat={};
+    teamsInAllSeasons= Object.keys(obj[yearStat]).reduce(function(teamsInAllSeasons,team){
+      teamStats[team]=[];
+      return teamsInAllSeasons;
+     },{})
+    
+     return teamStats;
+    },{})
+   // console.log(teamStats)
+   finalResult= Object.keys(teamStats).reduce(function(finalResult,team){
+      Object.keys(obj).reduce(function(noOfmatchesPerYear,year){
+        var flag=false;
+      Object.keys( obj[year]).reduce(function(a,teamInYear){
+        if(team==teamInYear){
+          teamStats[team].push(obj[year][teamInYear])
+          flag=true;
+        //  console.log(teamInYear)
+        }
+        
+      },{})
+      if(flag==false){
+        teamStats[team].push(0);
+      }
+       },{})
+       return finalResult;
+    },{})
+//console.log(teamStats);
+finalStats= Object.keys(teamStats).reduce(function(finalStats,team){
+var teamStat={};
+teamStat.name=team;
+teamStat.data=teamStats[team];
+finalStats.push(teamStat);
+  return finalStats;
+},[])
+console.log(finalStats)
+
 Highcharts.chart('container2', {
     chart: {
       type: 'bar'
     },
     title: {
-      text: 'Stacked bar chart'
+      text: 'matches won of all teams over all the years'
     },
     xAxis: {
       categories:years
@@ -19,7 +58,7 @@ Highcharts.chart('container2', {
     yAxis: {
       min: 0,
       title: {
-        text: 'Total fruit consumption'
+        text: 'Teams'
       }
     },
     legend: {
@@ -30,14 +69,5 @@ Highcharts.chart('container2', {
         stacking: 'normal'
       }
     },
-    series: [{
-      name: 'John',
-      data: [5, 3, 4, 7, 2]
-    }, {
-      name: 'Jane',
-      data: [2, 2, 3, 2, 1]
-    }, {
-      name: 'Joe',
-      data: [3, 4, 4, 2, 5]
-    }]
+    series: finalStats
   })});
