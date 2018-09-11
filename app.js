@@ -41,5 +41,5 @@ iplStats['extraRunsConcededPerTeam'] =appMethods.extraRunConcidedPerTeam(deliver
 iplStats['topEconomicalBowlers'] = appMethods.topEconomicalBowlers(deliveries,matches);
 
 iplStats=JSON.stringify(iplStats);
-fs.writeFileSync('./public/json/iplStats.json',iplStats)
+fs.writeFileSync('./public/js/iplStats.json',iplStats)
 console.log(iplStats)
