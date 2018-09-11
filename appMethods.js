@@ -68,6 +68,7 @@ module.exports = {
     
         return matchesWonOfAllTeams;
      },{})
+     //console.log(matchesWonOfAllTeams)
      return matchesWonOfAllTeams
     },
 
@@ -102,7 +103,7 @@ module.exports = {
             }
         return result;
         },{})
-
+     // console.log(result)
         return result;
     },
     topEconomicalBowlers: function (deliveries,matches) {
@@ -156,6 +157,7 @@ module.exports = {
             season2015MatchIds.push(match.id)
             return season2015MatchIds
             },[] )
+           // console.log(season2015MatchIds)
             
             var bowlers=deliveries.reduce(function(bowlers,delivery){
             if(season2015MatchIds.includes(delivery.match_id)){
@@ -174,7 +176,7 @@ module.exports = {
             return bowlers;
             },{})
             
-            
+            //console.log(bowlers)
             topEconomicalBowlers= Object.keys(bowlers).reduce(function(topEconomicalBowlers,bowler){
             var economy=bowlers[bowler].runs*6/bowlers[bowler].balls;
             
@@ -201,7 +203,7 @@ module.exports = {
                 return topEconomicalBowlers;
             },{});
           //  console.log(topEconomicalBowlers)
-            
+            console.log(topEconomicalBowlers)            
             return topEconomicalBowlers
     }
 

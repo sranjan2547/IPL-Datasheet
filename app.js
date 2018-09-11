@@ -42,4 +42,4 @@ iplStats['topEconomicalBowlers'] = appMethods.topEconomicalBowlers(deliveries,ma
 
 iplStats=JSON.stringify(iplStats);
 fs.writeFileSync('./public/js/iplStats.json',iplStats)
-console.log(iplStats)
+//console.log(iplStats)
