@@ -1,21 +1,21 @@
-$.get('js/iplStats.json',function(data){
-   obj=data['extraRunsConcededPerTeam'];
-   // console.log(obj)
-    
-   stats= Object.keys(obj).reduce(function(stats,year){
-      stats.push([year,obj[year]])
-      return stats;
-    },[])
+$.get('js/iplStats.json', (data) => {
+  const obj = data.extraRunsConcededPerTeam;
+  // console.log(obj)
 
-Highcharts.chart('extra-runs-consided-per-team', {
+  const stats = Object.keys(obj).reduce((stats, year) => {
+    stats.push([year, obj[year]]);
+    return stats;
+  }, []);
+
+  Highcharts.chart('extra-runs-consided-per-team', {
     chart: {
-      type: 'column'
+      type: 'column',
     },
     title: {
-      text: 'Extra runs consided in year 2016'
+      text: 'Extra runs consided in year 2016',
     },
     subtitle: {
-      text: ''
+      text: '',
     },
     xAxis: {
       type: 'category',
@@ -23,21 +23,21 @@ Highcharts.chart('extra-runs-consided-per-team', {
         rotation: -45,
         style: {
           fontSize: '13px',
-          fontFamily: 'Verdana, sans-serif'
-        }
-      }
+          fontFamily: 'Verdana, sans-serif',
+        },
+      },
     },
     yAxis: {
       min: 0,
       title: {
-        text: 'Extra runs'
-      }
+        text: 'Extra runs',
+      },
     },
     legend: {
-      enabled: false
+      enabled: false,
     },
     tooltip: {
-      pointFormat: 'Extra runs: <b>{point.y:.0f} </b>'
+      pointFormat: 'Extra runs: <b>{point.y:.0f} </b>',
     },
     series: [{
       name: 'Population',
@@ -51,8 +51,9 @@ Highcharts.chart('extra-runs-consided-per-team', {
         y: 10, // 10 pixels down from the top
         style: {
           fontSize: '13px',
-          fontFamily: 'Verdana, sans-serif'
-        }
-      }
-    }]
-  })});
+          fontFamily: 'Verdana, sans-serif',
+        },
+      },
+    }],
+  });
+});

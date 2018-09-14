@@ -1,74 +1,69 @@
-$.get('js/iplStats.json',function(data){
-//   console.log(data["matchesPerTeamPerSeason"]);
-obj=data["matchesPerTeamPerSeason"];
-  // console.log(obj);
-    years=Object.keys(obj).reduce(function(years,year){
-     years.push(year);
-      return years;
-    },[])
-    var teams
-    teamStats=Object.keys(obj).reduce(function(teamStats,yearStat){
-      var stat={};
-    teamsInAllSeasons= Object.keys(obj[yearStat]).reduce(function(teamsInAllSeasons,team){
-      teamStats[team]=[];
+$.get('js/iplStats.json', (iplStats) => {
+  matchesPerTeamStats = iplStats.matchesPerTeamPerSeason;
+  years = Object.keys(matchesPerTeamStats).reduce((years, year) => {
+    years.push(year);
+    return years;
+  }, []);
+  let teams;
+  teamStats = Object.keys(matchesPerTeamStats).reduce((teamStats, yearStat) => {
+    const stat = {};
+    teamsInAllSeasons = Object.keys(matchesPerTeamStats[yearStat]).reduce((teamsInAllSeasons, team) => {
+      teamStats[team] = [];
       return teamsInAllSeasons;
-     },{})
-    
-     return teamStats;
-    },{})
+    }, {});
 
-   finalResult= Object.keys(teamStats).reduce(function(finalResult,team){
-      Object.keys(obj).reduce(function(noOfmatchesPerYear,year){
-        var flag=false;
-      Object.keys( obj[year]).reduce(function(a,teamInYear){
-        if(team==teamInYear){
-          teamStats[team].push(obj[year][teamInYear])
-          flag=true;
+    return teamStats;
+  }, {});
 
+  finalResult = Object.keys(teamStats).reduce((finalResult, team) => {
+    Object.keys(matchesPerTeamStats).reduce((noOfmatchesPerYear, year) => {
+      let flag = false;
+      Object.keys(matchesPerTeamStats[year]).reduce((a, teamInYear) => {
+        if (team === teamInYear) {
+          teamStats[team].push(matchesPerTeamStats[year][teamInYear]);
+          flag = true;
         }
-        
-      },{})
-      if(flag==false){
+      }, {});
+      if (flag === false) {
         teamStats[team].push(0);
       }
-       },{})
-       return finalResult;
-    },{})
+    }, {});
+    return finalResult;
+  }, {});
 
-finalStats= Object.keys(teamStats).reduce(function(finalStats,team){
-var teamStat={};
-teamStat.name=team;
-teamStat.data=teamStats[team];
-finalStats.push(teamStat);
-  return finalStats;
-},[])
-//console.log(finalStats)
+  finalStats = Object.keys(teamStats).reduce((finalStats, team) => {
+    const teamStat = {};
+    teamStat.name = team;
+    teamStat.data = teamStats[team];
+    finalStats.push(teamStat);
+    return finalStats;
+  }, []);
+  // console.log(finalStats)
 
-Highcharts.chart('matches-per-team-per-season', {
+  Highcharts.chart('matches-per-team-per-season', {
     chart: {
-      type: 'bar'
+      type: 'bar',
     },
     title: {
-      text: 'matches won of all teams over all the years'
+      text: 'matches won of all teams over all the years',
     },
     xAxis: {
-      categories:years
+      categories: years,
     },
     yAxis: {
       min: 0,
       title: {
-        text: 'Teams'
-      }
+        text: 'Teams',
+      },
     },
     legend: {
-      reversed: true
+      reversed: true,
     },
     plotOptions: {
       series: {
-        stacking: 'normal'
-      }
+        stacking: 'normal',
+      },
     },
-    series: finalStats
-  })});
-
-
+    series: finalStats,
+  });
+});

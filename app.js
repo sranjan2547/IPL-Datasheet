@@ -1,7 +1,7 @@
 const fs = require('fs');
 const appMethods = require('./appMethods');
 const matches = require('./json/matches.json');
-let deliveries = require('./json/deliveries.json');
+const deliveries = require('./json/deliveries.json');
 
 
 let iplStats = {};
@@ -14,8 +14,8 @@ iplStats.topEconomicalBowlers = appMethods.topEconomicalBowlers(deliveries, matc
 iplStats = JSON.stringify(iplStats);
 
 fs.writeFile('./public/js/iplStats.json', iplStats, (err) => {
-    if (err)
-        console.log(err);
-
+  if (err) {
+    console.log(err);
+  }
 });
 console.log('file written successfully');

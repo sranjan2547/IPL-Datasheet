@@ -1,23 +1,20 @@
-var obj=[];
-$.get('js/iplStats.json',function(data){
-    obj=Object.entries(data);
-    obj=obj[0][1];
-    
-   stats= Object.keys(obj).reduce(function(stats,year){
-      stats.push([year,obj[year]])
-      return stats;
-    },[])
+$.get('js/iplStats.json', (iplStats) => {
+  matchesStats = iplStats.matchesPerYear;
+  stats = Object.keys(matchesStats).reduce((stats, year) => {
+    stats.push([year, matchesStats[year]]);
+    return stats;
+  }, []);
 
 
-Highcharts.chart('matches-per-year', {
+  Highcharts.chart('matches-per-year', {
     chart: {
-      type: 'column'
+      type: 'column',
     },
     title: {
-      text: 'Total Matches Per Year'
+      text: 'Total Matches Per Year',
     },
     subtitle: {
-      text: ''
+      text: '',
     },
     xAxis: {
       type: 'category',
@@ -25,21 +22,21 @@ Highcharts.chart('matches-per-year', {
         rotation: -45,
         style: {
           fontSize: '13px',
-          fontFamily: 'Verdana, sans-serif'
-        }
-      }
+          fontFamily: 'Verdana, sans-serif',
+        },
+      },
     },
     yAxis: {
       min: 0,
       title: {
-        text: 'Number Of Matches'
-      }
+        text: 'Number Of Matches',
+      },
     },
     legend: {
-      enabled: false
+      enabled: false,
     },
     tooltip: {
-      pointFormat: 'Matches: <b>{point.y:.0f} </b>'
+      pointFormat: 'Matches: <b>{point.y:.0f} </b>',
     },
     series: [{
       name: 'Population',
@@ -53,8 +50,9 @@ Highcharts.chart('matches-per-year', {
         y: 10, // 10 pixels down from the top
         style: {
           fontSize: '13px',
-          fontFamily: 'Verdana, sans-serif'
-        }
-      }
-    }]
-  })});
+          fontFamily: 'Verdana, sans-serif',
+        },
+      },
+    }],
+  });
+});
