@@ -1,12 +1,10 @@
 $.get('js/iplStats.json', (iplStats) => {
   matchesPerTeamStats = iplStats.matchesPerTeamPerSeason;
-  years = Object.keys(matchesPerTeamStats).reduce((years, year) => {
-    years.push(year);
-    return years;
-  }, []);
-  let teams;
+  console.log(Object.keys(matchesPerTeamStats));
+  years = Object.keys(matchesPerTeamStats);
+  
   teamStats = Object.keys(matchesPerTeamStats).reduce((teamStats, yearStat) => {
-    const stat = {};
+  
     teamsInAllSeasons = Object.keys(matchesPerTeamStats[yearStat]).reduce((teamsInAllSeasons, team) => {
       teamStats[team] = [];
       return teamsInAllSeasons;

@@ -2,7 +2,7 @@ module.exports = {
   noOfMatchesPerYear(matches) {
     const totalMatchesInSeason = matches.reduce((totalMatchesInSeason, match) => {
       if (totalMatchesInSeason.hasOwnProperty(match.season)) {
-        totalMatchesInSeason[match.season]++;
+        totalMatchesInSeason[match.season] += 1;
       } else {
         totalMatchesInSeason[match.season] = 1;
       }
@@ -16,12 +16,12 @@ module.exports = {
     const matchesWonOfAllTeams = matches.reduce((matchesWonOfAllTeams, match) => {
       if (match.season in matchesWonOfAllTeams) {
         if (match.winner in matchesWonOfAllTeams[match.season]) {
-          matchesWonOfAllTeams[match.season][match.winner]++;
+          matchesWonOfAllTeams[match.season][match.winner]+=1;
         } else {
           matchesWonOfAllTeams[match.season][match.winner] = 1;
         }
       } else {
-        let winners = {};
+        const winners = {};
         winners[match.winner] = 1;
         matchesWonOfAllTeams[match.season] = winners;
       }
@@ -64,7 +64,7 @@ module.exports = {
           bowlers[delivery.bowler].runs += parseInt(delivery.total_runs);
           bowlers[delivery.bowler].balls++;
         } else {
-          let obj = {};
+          const obj = {};
           obj.runs = parseInt(delivery.total_runs);
           obj.balls = 1;
           bowlers[delivery.bowler] = obj;
