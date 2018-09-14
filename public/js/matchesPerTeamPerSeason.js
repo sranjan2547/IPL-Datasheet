@@ -71,3 +71,5 @@ Highcharts.chart('matches-per-team-per-season', {
     },
     series: finalStats
   })});
+
+

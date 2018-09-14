@@ -1,4 +1,3 @@
-
 $.get('js/iplStats.json',function(data){
     obj=Object.entries(data);
     obj=obj[2][1];
