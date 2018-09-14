@@ -1,8 +1,7 @@
 $.get('js/iplStats.json',function(data){
-    obj=Object.entries(data);
-   obj=obj[1][1];
-
-   
+//   console.log(data["matchesPerTeamPerSeason"]);
+obj=data["matchesPerTeamPerSeason"];
+  // console.log(obj);
     years=Object.keys(obj).reduce(function(years,year){
      years.push(year);
       return years;
@@ -43,7 +42,7 @@ teamStat.data=teamStats[team];
 finalStats.push(teamStat);
   return finalStats;
 },[])
-console.log(finalStats)
+//console.log(finalStats)
 
 Highcharts.chart('matches-per-team-per-season', {
     chart: {

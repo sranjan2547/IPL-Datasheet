@@ -1,6 +1,6 @@
 $.get('js/iplStats.json',function(data){
-    obj=Object.entries(data);
-    obj=obj[2][1];
+   obj=data['extraRunsConcededPerTeam'];
+   // console.log(obj)
     
    stats= Object.keys(obj).reduce(function(stats,year){
       stats.push([year,obj[year]])
