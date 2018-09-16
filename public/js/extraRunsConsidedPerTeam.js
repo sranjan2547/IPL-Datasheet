@@ -1,12 +1,13 @@
-$.get('js/iplStats.json', (data) => {
-  const obj = data.extraRunsConcededPerTeam;
-  // console.log(obj)
-
-  const stats = Object.keys(obj).reduce((stats, year) => {
-    stats.push([year, obj[year]]);
+let extraRuns;
+$(() => {
+  const extraruns = iplStats.extraRunsConcededPerTeam;
+  const stats = Object.keys(extraruns).reduce((stats, year) => {
+    stats.push([year, extraruns[year]]);
     return stats;
   }, []);
-
+  extraRuns = stats;
+});
+$(() => {
   Highcharts.chart('extra-runs-consided-per-team', {
     chart: {
       type: 'column',
@@ -41,7 +42,7 @@ $.get('js/iplStats.json', (data) => {
     },
     series: [{
       name: 'Population',
-      data: stats,
+      data: extraRuns,
       dataLabels: {
         enabled: true,
         rotation: -90,

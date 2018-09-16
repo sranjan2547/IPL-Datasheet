@@ -1,11 +1,10 @@
-$.get('js/iplStats.json', (iplStats) => {
+let iplStats;
+$.get('js/iplStats.json', (iplData) => {
+  iplStats = iplData;
   matchesStats = iplStats.matchesPerYear;
-  stats = Object.keys(matchesStats).reduce((stats, year) => {
-    stats.push([year, matchesStats[year]]);
-    return stats;
-  }, []);
-
-
+  stats = Object.keys(matchesStats).map((matches) => [matches , matchesStats[matches]]);
+});
+$(() => {
   Highcharts.chart('matches-per-year', {
     chart: {
       type: 'column',

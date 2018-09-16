@@ -16,7 +16,7 @@ module.exports = {
     const matchesWonOfAllTeams = matches.reduce((matchesWonOfAllTeams, match) => {
       if (match.season in matchesWonOfAllTeams) {
         if (match.winner in matchesWonOfAllTeams[match.season]) {
-          matchesWonOfAllTeams[match.season][match.winner]+=1;
+          matchesWonOfAllTeams[match.season][match.winner] += 1;
         } else {
           matchesWonOfAllTeams[match.season][match.winner] = 1;
         }

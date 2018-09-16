@@ -1,12 +1,12 @@
 
-$.get('js/iplStats.json', (iplStats) => {
+$(() => {
   bowlerStats = iplStats.topEconomicalBowlers;
   stats = Object.keys(bowlerStats).reduce((stats, year) => {
     stats.push([year, bowlerStats[year]]);
     return stats;
   }, []);
-
-
+});
+$(() => {
   Highcharts.chart('top-economical-bowlers', {
     chart: {
       type: 'column',
