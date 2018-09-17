@@ -1,10 +1,8 @@
 
 $(() => {
   bowlerStats = iplStats.topEconomicalBowlers;
-  stats = Object.keys(bowlerStats).reduce((stats, year) => {
-    stats.push([year, bowlerStats[year]]);
-    return stats;
-  }, []);
+
+  stats = Object.keys(bowlerStats).map(year => [year, bowlerStats[year]]);
 });
 $(() => {
   Highcharts.chart('top-economical-bowlers', {

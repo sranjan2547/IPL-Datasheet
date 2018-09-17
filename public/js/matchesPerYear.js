@@ -2,7 +2,7 @@ let iplStats;
 $.get('js/iplStats.json', (iplData) => {
   iplStats = iplData;
   matchesStats = iplStats.matchesPerYear;
-  stats = Object.keys(matchesStats).map((matches) => [matches , matchesStats[matches]]);
+  stats = Object.keys(matchesStats).map(matches => [matches, matchesStats[matches]]);
 });
 $(() => {
   Highcharts.chart('matches-per-year', {

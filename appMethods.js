@@ -1,7 +1,7 @@
 module.exports = {
   noOfMatchesPerYear(matches) {
     const totalMatchesInSeason = matches.reduce((totalMatchesInSeason, match) => {
-      if (totalMatchesInSeason.hasOwnProperty(match.season)) {
+      if (match.season in totalMatchesInSeason) {
         totalMatchesInSeason[match.season] += 1;
       } else {
         totalMatchesInSeason[match.season] = 1;
@@ -33,17 +33,19 @@ module.exports = {
   },
 
   extraRunConcidedPerTeam(deliveries, matches) {
-    const season2016Match_ids = matches.filter(match => match.season == 2016).reduce((season2016Match_ids, match) => {
-      season2016Match_ids.push(parseInt(match.id));
-      return season2016Match_ids;
-    }, []);
+    const matchIds = matches.filter(match => match.season === '2016')
+      // .reduce((matchIds, match) => {
+      //   matchIds.push(parseInt(match.id, 10));
+      //   return matchIds;
+      // }, []);
+      .map(match => parseInt(match.id, 10));
 
     const result = deliveries.reduce((result, delivery) => {
-      if (season2016Match_ids.includes(parseInt(delivery.match_id))) {
-        if (result.hasOwnProperty(delivery.bowling_team)) {
-          result[delivery.bowling_team] += parseInt(delivery.extra_runs);
+      if (matchIds.includes(parseInt(delivery.match_id, 10))) {
+        if (delivery.bowling_team in result) {
+          result[delivery.bowling_team] += parseInt(delivery.extra_runs, 10);
         } else {
-          result[delivery.bowling_team] = parseInt(delivery.extra_runs);
+          result[delivery.bowling_team] = parseInt(delivery.extra_runs, 10);
         }
       }
       return result;
@@ -52,20 +54,22 @@ module.exports = {
     return result;
   },
   topEconomicalBowlers(deliveries, matches) {
-    const season2015MatchIds = matches.filter(match => match.season == 2015).reduce((season2015MatchIds, match) => {
-      season2015MatchIds.push(match.id);
-      return season2015MatchIds;
-    }, []);
+    const season2015MatchIds = matches.filter(match => match.season === '2015')
+      // .reduce((season2015MatchIds, match) => {
+      //   season2015MatchIds.push(match.id);
+      //   return season2015MatchIds;
+      // }, []);
+      .map(match => match.id);
 
 
     const bowlers = deliveries.reduce((bowlers, delivery) => {
       if (season2015MatchIds.includes(delivery.match_id)) {
         if (delivery.bowler in bowlers) {
-          bowlers[delivery.bowler].runs += parseInt(delivery.total_runs);
-          bowlers[delivery.bowler].balls++;
+          bowlers[delivery.bowler].runs += parseInt(delivery.total_runs, 10);
+          bowlers[delivery.bowler].balls += 1;
         } else {
           const obj = {};
-          obj.runs = parseInt(delivery.total_runs);
+          obj.runs = parseInt(delivery.total_runs, 10);
           obj.balls = 1;
           bowlers[delivery.bowler] = obj;
         }
@@ -74,21 +78,19 @@ module.exports = {
     }, {});
 
 
-    topEconomicalBowlers = Object.keys(bowlers).reduce((topEconomicalBowlers, bowler) => {
-      let economy = bowlers[bowler].runs * 6 / bowlers[bowler].balls;
+    topEconomicalBowlers = Object.keys(bowlers)
 
-      economy = Math.round(economy * 100) / 100;
-
-      topEconomicalBowlers.push([bowler, economy]);
-      return topEconomicalBowlers;
-    }, []);
+      .map((bowler) => {
+        let economy = bowlers[bowler].runs * 6 / bowlers[bowler].balls;
+        economy = Math.round(economy * 100) / 100;
+        return [bowler, economy];
+      });
     topEconomicalBowlers.sort((a, b) => a[1] - b[1]);
-    topEconomicalBowlers = topEconomicalBowlers.reduce((topEconomicalBowlers, bowler) => {
+    topEconomicalBowlers = topEconomicalBowlers.map((bowler) => {
       if (bowler[1] < 7) {
-        topEconomicalBowlers.push(bowler);
+        return bowler;
       }
-      return topEconomicalBowlers;
-    }, []);
+    });
 
 
     topEconomicalBowlers = topEconomicalBowlers.reduce((topEconomicalBowlers, bowler) => {

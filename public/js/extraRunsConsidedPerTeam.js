@@ -1,10 +1,7 @@
 let extraRuns;
 $(() => {
   const extraruns = iplStats.extraRunsConcededPerTeam;
-  const stats = Object.keys(extraruns).reduce((stats, year) => {
-    stats.push([year, extraruns[year]]);
-    return stats;
-  }, []);
+  const stats = Object.keys(extraruns).map(year => [year, extraruns[year]]);
   extraRuns = stats;
 });
 $(() => {

@@ -1,12 +1,14 @@
 $(() => {
   matchesPerTeamStats = iplStats.matchesPerTeamPerSeason;
+  console.log(matchesPerTeamStats)
   years = Object.keys(matchesPerTeamStats);
 
   teamStats = Object.keys(matchesPerTeamStats).reduce((teamStats, yearStat) => {
-    teamsInAllSeasons = Object.keys(matchesPerTeamStats[yearStat]).reduce((teamsInAllSeasons, team) => {
-      teamStats[team] = [];
-      return teamsInAllSeasons;
-    }, {});
+    teamsInAllSeasons = Object.keys(matchesPerTeamStats[yearStat])
+      .reduce((teamsInAllSeasons, team) => {
+        teamStats[team] = [];
+        return teamsInAllSeasons;
+      }, {});
 
     return teamStats;
   }, {});
@@ -34,8 +36,9 @@ $(() => {
     finalStats.push(teamStat);
     return finalStats;
   }, []);
+  console.log(finalStats)
 });
-// console.log(finalStats)
+
 $(() => {
   Highcharts.chart('matches-per-team-per-season', {
     chart: {
