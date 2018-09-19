@@ -14,7 +14,7 @@ module.exports = {
 
   matchesWonOfAllTeams(matches) {
     const year = [];
-    const matchesWonPerYear = {};
+    let matchesWonPerYear = {};
     matches.map((match) => {
       if (match.winner !== '') {
         if (match.winner in matchesWonPerYear) {
@@ -34,14 +34,21 @@ module.exports = {
       }
     });
 
-    Object.values(matchesWonPerYear).map((matchesStats) => {
-      year.map((match) => {
-        if (!(match in matchesStats.data)) {
-          matchesStats.data[match] = 0;
+    year.map((yearData) => {
+      Object.keys(matchesWonPerYear).map((matches) => {
+        if (!(yearData in matchesWonPerYear[matches].data)) {
+          matchesWonPerYear[matches].data[yearData] = 0;
         }
       });
-      matchesStats.data = Object.values(matchesStats.data);
     });
+    matchesWonPerYear = Object.keys(matchesWonPerYear).map((match) => {
+      const seasonStat = {};
+      seasonStat[matchesWonPerYear[match].name] = matchesWonPerYear[match].data;
+      return seasonStat;
+    });
+
+
+  //  console.log(matchesWonPerYear);
     return matchesWonPerYear;
   },
 

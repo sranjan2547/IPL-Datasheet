@@ -1,9 +1,9 @@
-
 $(document).ready(() => {
   $.get('js/iplStats.json', (iplStats) => {
     processData(iplStats);
   });
 });
+
 
 function processData(iplStats) {
   promice = new Promise((resolve, reject) => {
@@ -13,9 +13,19 @@ function processData(iplStats) {
 
     const extrarunsData = iplStats.extraRunsConcededPerTeam;
     const extraRuns = Object.keys(extrarunsData).map(year => [year, extrarunsData[year]]);
+    //
+    const seasonStats = iplStats.matchesPerTeamPerSeason;
 
-    const finalStats = Object.values(iplStats.matchesPerTeamPerSeason);
-    const yearsData = Object.keys(iplStats.matchesPerYear);
+
+    finalStats = Object.values(seasonStats).map((team) => {
+      const stat = {};
+      stat.name = Object.keys(team)[0];
+      stat.data = Object.values(Object.values(team)[0]);
+      console.log(Object.values(Object.values(team)[0]));
+      return stat;
+    });
+    const yearsData = Object.keys(Object.values(iplStats.matchesPerTeamPerSeason[0])[0]);
+
 
     bowlerStats = iplStats.topEconomicalBowlers;
     const bowlersData = Object.keys(bowlerStats).map(year => [year, bowlerStats[year]]);
@@ -23,11 +33,11 @@ function processData(iplStats) {
 
 
     resolve(finalData);
-   
   }).then((finalData) => {
     noOfMatchesPerYear(finalData[0]);
     extraRunsConceded(finalData[1]);
     matchesPerTeamSeason(finalData[2], finalData[3]);
+
     topBowlers(finalData[4]);
     console.log('resolved');
   });
@@ -84,5 +94,5 @@ function noOfMatchesPerYear(stats) {
       },
     }],
   });
-// });
+  // });
 }
