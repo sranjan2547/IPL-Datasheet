@@ -1,4 +1,5 @@
-function extraRunsConceded(extraRuns) {
+
+function extraRunsConceded(extraRuns) { // eslint-disable-line no-unused-vars
   Highcharts.chart('extra-runs-consided-per-team', {
     chart: {
       type: 'column',

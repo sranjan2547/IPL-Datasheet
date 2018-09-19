@@ -1,4 +1,4 @@
-function matchesPerTeamSeason(yearsData, finalStats) {
+function matchesPerTeamSeason(yearsData, finalStats) { // eslint-disable-line no-unused-vars
   Highcharts.chart('matches-per-team-per-season', {
     chart: {
       type: 'bar',

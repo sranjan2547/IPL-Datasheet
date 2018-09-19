@@ -1,4 +1,4 @@
-function topBowlers(bowlersData) {
+function topBowlers(bowlersData) { // eslint-disable-line no-unused-vars
   Highcharts.chart('top-economical-bowlers', {
     chart: {
       type: 'column',

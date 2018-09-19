@@ -2,9 +2,9 @@ module.exports = {
   noOfMatchesPerYear(matches) {
     const totalMatchesInSeason = matches.reduce((totalMatchesInSeason, match) => {
       if (match.season in totalMatchesInSeason) {
-        totalMatchesInSeason[match.season] += 1;
+        totalMatchesInSeason[match.season] += 1; // eslint-disable-line no-param-reassign
       } else {
-        totalMatchesInSeason[match.season] = 1;
+        totalMatchesInSeason[match.season] = 1; // eslint-disable-line no-param-reassign
       }
 
       return totalMatchesInSeason;
@@ -29,9 +29,13 @@ module.exports = {
         } else {
           const yearMatches = {};
           yearMatches[match.season] = 1;
-          matchesWonPerYear[match.winner] = { name: match.winner, data: yearMatches };
+          matchesWonPerYear[match.winner] = {
+            name: match.winner,
+            data: yearMatches,
+          };
         }
       }
+      return null;
     });
 
     year.map((yearData) => {
@@ -39,16 +43,23 @@ module.exports = {
         if (!(yearData in matchesWonPerYear[matches].data)) {
           matchesWonPerYear[matches].data[yearData] = 0;
         }
+        return null;
       });
+      return matchesWonPerYear;
     });
-    matchesWonPerYear = Object.keys(matchesWonPerYear).map((match) => {
+    /*   matchesWonPerYear = Object.keys(matchesWonPerYear).map((match) => {
       const seasonStat = {};
       seasonStat[matchesWonPerYear[match].name] = matchesWonPerYear[match].data;
       return seasonStat;
-    });
+    }); */
+    matchesWonPerYear = Object.keys(matchesWonPerYear).reduce((seasonStat, match) => {
+      // acc = {};
+      seasonStat[matchesWonPerYear[match].name] = matchesWonPerYear[match].data;
+      return seasonStat;
+    }, {});
 
 
-  //  console.log(matchesWonPerYear);
+    console.log(matchesWonPerYear);
     return matchesWonPerYear;
   },
 
@@ -58,9 +69,9 @@ module.exports = {
     const result = deliveries.reduce((result, delivery) => {
       if (matchIds.includes(parseInt(delivery.match_id, 10))) {
         if (delivery.bowling_team in result) {
-          result[delivery.bowling_team] += parseInt(delivery.extra_runs, 10);
+          result[delivery.bowling_team] += parseInt(delivery.extra_runs, 10); // eslint-disable-line no-param-reassign
         } else {
-          result[delivery.bowling_team] = parseInt(delivery.extra_runs, 10);
+          result[delivery.bowling_team] = parseInt(delivery.extra_runs, 10); // eslint-disable-line no-param-reassign
         }
       }
       return result;
@@ -75,13 +86,13 @@ module.exports = {
     const bowlers = deliveries.reduce((bowlers, delivery) => {
       if (season2015MatchIds.includes(delivery.match_id)) {
         if (delivery.bowler in bowlers) {
-          bowlers[delivery.bowler].runs += parseInt(delivery.total_runs, 10);
-          bowlers[delivery.bowler].balls += 1;
+          bowlers[delivery.bowler].runs += parseInt(delivery.total_runs, 10); // eslint-disable-line no-param-reassign
+          bowlers[delivery.bowler].balls += 1; // eslint-disable-line no-param-reassign
         } else {
           const obj = {};
           obj.runs = parseInt(delivery.total_runs, 10);
           obj.balls = 1;
-          bowlers[delivery.bowler] = obj;
+          bowlers[delivery.bowler] = obj; // eslint-disable-line no-param-reassign
         }
       }
       return bowlers;
@@ -89,7 +100,7 @@ module.exports = {
     //   console.log(bowlers)
 
 
-    topEconomicalBowlers = Object.keys(bowlers).map((bowler) => {
+    let topEconomicalBowlers = Object.keys(bowlers).map((bowler) => {
       let economy = bowlers[bowler].runs * 6 / bowlers[bowler].balls;
       economy = Math.round(economy * 100) / 100;
       return [bowler, economy];
@@ -100,7 +111,7 @@ module.exports = {
     // console.log(topEconomicalBowlers)
 
     topEconomicalBowlers = topEconomicalBowlers.reduce((topEconomicalBowlers, bowler) => {
-      topEconomicalBowlers[bowler[0]] = bowler[1];
+      topEconomicalBowlers[bowler[0]] = bowler[1]; // eslint-disable-line prefer-destructuring
       return topEconomicalBowlers;
     }, {});
 
