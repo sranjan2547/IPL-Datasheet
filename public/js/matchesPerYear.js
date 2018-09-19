@@ -1,46 +1,40 @@
-$(document).ready(() => {
-  $.get('js/iplStats.json', (iplStats) => {
-    processData(iplStats);
+$(document).ready(() => { // eslint-disable-line no-undef
+  $.get('js/iplStats.json', (iplStats) => { // eslint-disable-line no-undef
+    processData(iplStats); // eslint-disable-line no-use-before-define
   });
 });
 
 
 function processData(iplStats) {
-  promice = new Promise((resolve, reject) => {
-    matchesStats = iplStats.matchesPerYear;
+  const matchesStats = iplStats.matchesPerYear;
 
-    const stats = Object.keys(matchesStats).map(matches => [matches, matchesStats[matches]]);
+  const stats = Object.keys(matchesStats).map(matches => [matches, matchesStats[matches]]);
 
-    const extrarunsData = iplStats.extraRunsConcededPerTeam;
-    const extraRuns = Object.keys(extrarunsData).map(year => [year, extrarunsData[year]]);
-    //
-    const seasonStats = iplStats.matchesPerTeamPerSeason;
+  const extrarunsData = iplStats.extraRunsConcededPerTeam;
+  const extraRuns = Object.keys(extrarunsData).map(year => [year, extrarunsData[year]]);
 
-
-    finalStats = Object.values(seasonStats).map((team) => {
-      const stat = {};
-      stat.name = Object.keys(team)[0];
-      stat.data = Object.values(Object.values(team)[0]);
-      console.log(Object.values(Object.values(team)[0]));
-      return stat;
-    });
-    const yearsData = Object.keys(Object.values(iplStats.matchesPerTeamPerSeason[0])[0]);
+  const seasonStats = iplStats.matchesPerTeamPerSeason;
 
 
-    bowlerStats = iplStats.topEconomicalBowlers;
-    const bowlersData = Object.keys(bowlerStats).map(year => [year, bowlerStats[year]]);
-    const finalData = [stats, extraRuns, yearsData, finalStats, bowlersData];
-
-
-    resolve(finalData);
-  }).then((finalData) => {
-    noOfMatchesPerYear(finalData[0]);
-    extraRunsConceded(finalData[1]);
-    matchesPerTeamSeason(finalData[2], finalData[3]);
-
-    topBowlers(finalData[4]);
-    console.log('resolved');
+  const finalStats = Object.values(seasonStats).map((team) => {
+    const stat = {};
+    stat.name = Object.keys(team)[0]; // eslint-disable-line prefer-destructuring
+    stat.data = Object.values(Object.values(team)[0]);
+    return stat;
   });
+  const yearsData = Object.keys(Object.values(iplStats.matchesPerTeamPerSeason[0])[0]);
+
+
+  const bowlerStats = iplStats.topEconomicalBowlers;
+  const bowlersData = Object.keys(bowlerStats).map(year => [year, bowlerStats[year]]);
+  const finalData = [stats, extraRuns, yearsData, finalStats, bowlersData];
+
+
+  noOfMatchesPerYear(finalData[0]);// eslint-disable-line no-use-before-define
+  extraRunsConceded(finalData[1]); // eslint-disable-line no-undef
+  matchesPerTeamSeason(finalData[2], finalData[3]); // eslint-disable-line no-undef
+
+  topBowlers(finalData[4]);// eslint-disable-line no-undef
 }
 
 
