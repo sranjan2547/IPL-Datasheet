@@ -1,10 +1,4 @@
-let extraRuns;
-$(() => {
-  const extraruns = iplStats.extraRunsConcededPerTeam;
-  const stats = Object.keys(extraruns).map(year => [year, extraruns[year]]);
-  extraRuns = stats;
-});
-$(() => {
+function extraRunsConceded(extraRuns) {
   Highcharts.chart('extra-runs-consided-per-team', {
     chart: {
       type: 'column',
@@ -54,4 +48,4 @@ $(() => {
       },
     }],
   });
-});
+}

@@ -1,10 +1,4 @@
-
-$(() => {
-  bowlerStats = iplStats.topEconomicalBowlers;
-
-  stats = Object.keys(bowlerStats).map(year => [year, bowlerStats[year]]);
-});
-$(() => {
+function topBowlers(bowlersData) {
   Highcharts.chart('top-economical-bowlers', {
     chart: {
       type: 'column',
@@ -39,7 +33,7 @@ $(() => {
     },
     series: [{
       name: 'Population',
-      data: stats,
+      data: bowlersData,
       dataLabels: {
         enabled: true,
         rotation: -90,
@@ -54,4 +48,4 @@ $(() => {
       },
     }],
   });
-});
+}

@@ -1,1 +1,96 @@
-{"matchesPerYear":{"2008":58,"2009":57,"2010":60,"2011":73,"2012":74,"2013":76,"2014":60,"2015":59,"2016":60,"2017":59},"matchesPerTeamPerSeason":{"Sunrisers Hyderabad":{"name":"Sunrisers Hyderabad","data":[0,0,0,0,0,10,6,7,11,8]},"Rising Pune Supergiant":{"name":"Rising Pune Supergiant","data":[0,0,0,0,0,0,0,0,0,10]},"Kolkata Knight Riders":{"name":"Kolkata Knight Riders","data":[6,3,7,8,12,6,11,7,8,9]},"Kings XI Punjab":{"name":"Kings XI Punjab","data":[10,7,4,7,8,8,12,3,4,7]},"Royal Challengers Bangalore":{"name":"Royal Challengers Bangalore","data":[4,9,8,10,8,9,5,8,9,3]},"Mumbai Indians":{"name":"Mumbai Indians","data":[7,5,11,10,10,13,7,10,7,12]},"Delhi Daredevils":{"name":"Delhi Daredevils","data":[7,10,7,4,11,3,2,5,7,6]},"Gujarat Lions":{"name":"Gujarat Lions","data":[0,0,0,0,0,0,0,0,9,4]},"Chennai Super Kings":{"name":"Chennai Super Kings","data":[9,8,9,11,10,12,10,10,0,0]},"Rajasthan Royals":{"name":"Rajasthan Royals","data":[13,6,6,6,7,11,7,7,0,0]},"Deccan Chargers":{"name":"Deccan Chargers","data":[2,9,8,6,4,0,0,0,0,0]},"Pune Warriors":{"name":"Pune Warriors","data":[0,0,0,4,4,4,0,0,0,0]},"Kochi Tuskers Kerala":{"name":"Kochi Tuskers Kerala","data":[0,0,0,6,0,0,0,0,0,0]},"Rising Pune Supergiants":{"name":"Rising Pune Supergiants","data":[0,0,0,0,0,0,0,0,5,0]}},"extraRunsConcededPerTeam":{"Rising Pune Supergiants":108,"Mumbai Indians":102,"Kolkata Knight Riders":122,"Delhi Daredevils":106,"Gujarat Lions":98,"Kings XI Punjab":100,"Sunrisers Hyderabad":107,"Royal Challengers Bangalore":156},"topEconomicalBowlers":{"RN ten Doeschate":3.43,"J Yadav":4.14,"V Kohli":5.45,"R Ashwin":5.73,"S Nadeem":5.86,"Z Khan":6.15,"Parvez Rasool":6.2,"MC Henriques":6.27,"MA Starc":6.75,"M de Lange":6.92,"Sandeep Sharma":6.93,"GB Hogg":6.99}}
+{
+    "matchesPerYear": {
+        "2008": 58,
+        "2009": 57,
+        "2010": 60,
+        "2011": 73,
+        "2012": 74,
+        "2013": 76,
+        "2014": 60,
+        "2015": 59,
+        "2016": 60,
+        "2017": 59
+    },
+    "matchesPerTeamPerSeason": {
+        "Sunrisers Hyderabad": {
+            "name": "Sunrisers Hyderabad",
+            "data": [0, 0, 0, 0, 0, 10, 6, 7, 11, 8]
+        },
+        "Rising Pune Supergiant": {
+            "name": "Rising Pune Supergiant",
+            "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+        },
+        "Kolkata Knight Riders": {
+            "name": "Kolkata Knight Riders",
+            "data": [6, 3, 7, 8, 12, 6, 11, 7, 8, 9]
+        },
+        "Kings XI Punjab": {
+            "name": "Kings XI Punjab",
+            "data": [10, 7, 4, 7, 8, 8, 12, 3, 4, 7]
+        },
+        "Royal Challengers Bangalore": {
+            "name": "Royal Challengers Bangalore",
+            "data": [4, 9, 8, 10, 8, 9, 5, 8, 9, 3]
+        },
+        "Mumbai Indians": {
+            "name": "Mumbai Indians",
+            "data": [7, 5, 11, 10, 10, 13, 7, 10, 7, 12]
+        },
+        "Delhi Daredevils": {
+            "name": "Delhi Daredevils",
+            "data": [7, 10, 7, 4, 11, 3, 2, 5, 7, 6]
+        },
+        "Gujarat Lions": {
+            "name": "Gujarat Lions",
+            "data": [0, 0, 0, 0, 0, 0, 0, 0, 9, 4]
+        },
+        "Chennai Super Kings": {
+            "name": "Chennai Super Kings",
+            "data": [9, 8, 9, 11, 10, 12, 10, 10, 0, 0]
+        },
+        "Rajasthan Royals": {
+            "name": "Rajasthan Royals",
+            "data": [13, 6, 6, 6, 7, 11, 7, 7, 0, 0]
+        },
+        "Deccan Chargers": {
+            "name": "Deccan Chargers",
+            "data": [2, 9, 8, 6, 4, 0, 0, 0, 0, 0]
+        },
+        "Pune Warriors": {
+            "name": "Pune Warriors",
+            "data": [0, 0, 0, 4, 4, 4, 0, 0, 0, 0]
+        },
+        "Kochi Tuskers Kerala": {
+            "name": "Kochi Tuskers Kerala",
+            "data": [0, 0, 0, 6, 0, 0, 0, 0, 0, 0]
+        },
+        "Rising Pune Supergiants": {
+            "name": "Rising Pune Supergiants",
+            "data": [0, 0, 0, 0, 0, 0, 0, 0, 5, 0]
+        }
+    },
+    "extraRunsConcededPerTeam": {
+        "Rising Pune Supergiants": 108,
+        "Mumbai Indians": 102,
+        "Kolkata Knight Riders": 122,
+        "Delhi Daredevils": 106,
+        "Gujarat Lions": 98,
+        "Kings XI Punjab": 100,
+        "Sunrisers Hyderabad": 107,
+        "Royal Challengers Bangalore": 156
+    },
+    "topEconomicalBowlers": {
+        "RN ten Doeschate": 3.43,
+        "J Yadav": 4.14,
+        "V Kohli": 5.45,
+        "R Ashwin": 5.73,
+        "S Nadeem": 5.86,
+        "Z Khan": 6.15,
+        "Parvez Rasool": 6.2,
+        "MC Henriques": 6.27,
+        "MA Starc": 6.75,
+        "M de Lange": 6.92,
+        "Sandeep Sharma": 6.93,
+        "GB Hogg": 6.99
+    }
+}

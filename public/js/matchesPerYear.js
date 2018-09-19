@@ -1,10 +1,40 @@
-let iplStats;
-$.get('js/iplStats.json', (iplData) => {
-  iplStats = iplData;
-  matchesStats = iplStats.matchesPerYear;
-  stats = Object.keys(matchesStats).map(matches => [matches, matchesStats[matches]]);
+
+$(document).ready(() => {
+  $.get('js/iplStats.json', (iplStats) => {
+    processData(iplStats);
+  });
 });
-$(() => {
+
+function processData(iplStats) {
+  promice = new Promise((resolve, reject) => {
+    matchesStats = iplStats.matchesPerYear;
+
+    const stats = Object.keys(matchesStats).map(matches => [matches, matchesStats[matches]]);
+
+    const extrarunsData = iplStats.extraRunsConcededPerTeam;
+    const extraRuns = Object.keys(extrarunsData).map(year => [year, extrarunsData[year]]);
+
+    const finalStats = Object.values(iplStats.matchesPerTeamPerSeason);
+    const yearsData = Object.keys(iplStats.matchesPerYear);
+
+    bowlerStats = iplStats.topEconomicalBowlers;
+    const bowlersData = Object.keys(bowlerStats).map(year => [year, bowlerStats[year]]);
+    const finalData = [stats, extraRuns, yearsData, finalStats, bowlersData];
+
+
+    resolve(finalData);
+   
+  }).then((finalData) => {
+    noOfMatchesPerYear(finalData[0]);
+    extraRunsConceded(finalData[1]);
+    matchesPerTeamSeason(finalData[2], finalData[3]);
+    topBowlers(finalData[4]);
+    console.log('resolved');
+  });
+}
+
+
+function noOfMatchesPerYear(stats) {
   Highcharts.chart('matches-per-year', {
     chart: {
       type: 'column',
@@ -54,4 +84,5 @@ $(() => {
       },
     }],
   });
-});
+// });
+}

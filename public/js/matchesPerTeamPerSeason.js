@@ -1,9 +1,4 @@
-let yearsData;
-$(() => {
-  finalStats = Object.values(iplStats.matchesPerTeamPerSeason);
-  yearsData = Object.keys(iplStats.matchesPerYear);
-});
-$(() => {
+function matchesPerTeamSeason(yearsData, finalStats) {
   Highcharts.chart('matches-per-team-per-season', {
     chart: {
       type: 'bar',
@@ -30,4 +25,4 @@ $(() => {
     },
     series: finalStats,
   });
-});
+}
