@@ -4,7 +4,6 @@ $(document).ready(() => { // eslint-disable-line no-undef
   });
 });
 
-
 function processData(iplStats) {
   const matchesStats = iplStats.matchesPerYear;
 
@@ -15,14 +14,14 @@ function processData(iplStats) {
 
   const seasonStats = iplStats.matchesPerTeamPerSeason;
 
-
-  const finalStats = Object.values(seasonStats).map((team) => {
+  const finalStats = Object.keys(seasonStats).map((team) => {
     const stat = {};
-    stat.name = Object.keys(team)[0]; // eslint-disable-line prefer-destructuring
-    stat.data = Object.values(Object.values(team)[0]);
+    stat.name = team; // eslint-disable-line prefer-destructuring
+    stat.data = Object.values(seasonStats[team]);
+
     return stat;
   });
-  const yearsData = Object.keys(Object.values(iplStats.matchesPerTeamPerSeason[0])[0]);
+  const yearsData = Object.keys(Object.values(seasonStats)[0]);
 
 
   const bowlerStats = iplStats.topEconomicalBowlers;
@@ -36,7 +35,6 @@ function processData(iplStats) {
 
   topBowlers(finalData[4]);// eslint-disable-line no-undef
 }
-
 
 function noOfMatchesPerYear(stats) {
   Highcharts.chart('matches-per-year', {

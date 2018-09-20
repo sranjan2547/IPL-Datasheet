@@ -47,19 +47,12 @@ module.exports = {
       });
       return matchesWonPerYear;
     });
-    /*   matchesWonPerYear = Object.keys(matchesWonPerYear).map((match) => {
-      const seasonStat = {};
-      seasonStat[matchesWonPerYear[match].name] = matchesWonPerYear[match].data;
-      return seasonStat;
-    }); */
+
     matchesWonPerYear = Object.keys(matchesWonPerYear).reduce((seasonStat, match) => {
-      // acc = {};
+
       seasonStat[matchesWonPerYear[match].name] = matchesWonPerYear[match].data;
       return seasonStat;
     }, {});
-
-
-    console.log(matchesWonPerYear);
     return matchesWonPerYear;
   },
 
